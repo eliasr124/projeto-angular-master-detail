@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryListComponent implements OnInit {
 
+  msg!: string;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  alertMsg(): void {
+      alert('Exluir');
   }
 
 }
