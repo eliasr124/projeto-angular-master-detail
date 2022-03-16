@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../shared/category.model';
+import { CategoryService } from '../shared/category.service';
 
 @Component({
   selector: 'app-category-list',
@@ -7,15 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryListComponent implements OnInit {
 
+  categories: Category[] = [];
+
   msg!: string;
 
-  constructor() { }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.categoryService.getAll().subscribe(
+      data => this.categories = data,      
+      error => alert('Erro ao carregar a lista')
+    )
   }
 
-  alertMsg(): void {
-      alert('Exluir');
+  deleteCategory(category: any) {
+    const mustMessage = confirm("Deseja realmente excluir esse item?");
+  
+    if(mustMessage) {
+      this.categoryService.delete(category.id).subscribe(
+        () => this.categories = this.categories.filter(element => element != category),
+        () => alert("Erro ao tentar excluir!")
+      )
+    }
   }
 
 }
