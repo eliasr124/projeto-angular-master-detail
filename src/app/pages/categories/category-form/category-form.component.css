@@ -1,0 +1,17 @@
+.botao {
+    float: right;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 200px;
+}
+
+.botao {
+    margin-top: 20px;
+}
+
+.botao-voltar {
+    float: right;
+}
